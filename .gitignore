@@ -1,0 +1,17 @@
+# Secrets / auth
+**/auth.json
+**/.env
+**/.env.*
+**/*token*
+**/*secret*
+**/*credential*
+
+# Heavy/generated / local history
+**/node_modules/
+**/.git/
+**/sessions/
+**/context-mode/
+**/*.db
+**/*.sqlite
+**/*.sqlite3
+.DS_Store

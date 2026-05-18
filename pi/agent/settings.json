@@ -1,0 +1,11 @@
+{
+  "lastChangelogVersion": "0.75.1",
+  "defaultProvider": "openai-codex",
+  "defaultModel": "gpt-5.5",
+  "defaultThinkingLevel": "low",
+  "packages": [
+    "https://github.com/coctostan/pi-superpowers",
+    "npm:context-mode",
+    "git:github.com/v2nic/pi-caveman"
+  ]
+}
