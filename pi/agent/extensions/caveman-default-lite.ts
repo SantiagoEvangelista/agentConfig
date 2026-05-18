@@ -19,7 +19,35 @@ function formatLevel(level: CavemanLevel): string {
 	}
 }
 
+function setLevel(level: CavemanLevel, ctx: { ui: { setStatus(key: string, value: string | undefined): void; notify(message: string, level: "info" | "warning" | "error"): void } }) {
+	currentLevel = level;
+	ctx.ui.setStatus("caveman", currentLevel === "off" ? undefined : currentLevel);
+	ctx.ui.notify(formatLevel(currentLevel), "info");
+}
+
+function parseLevel(args: string | undefined): CavemanLevel | undefined {
+	const cleanArg = args?.trim().toLowerCase().split(/\s+/)[0] ?? "";
+	if (!cleanArg) return undefined;
+	if (["lite", "full", "ultra", "off"].includes(cleanArg)) return cleanArg as CavemanLevel;
+	return undefined;
+}
+
 export default function (pi: ExtensionAPI) {
+	pi.registerCommand("caveman", {
+		description: "Set caveman mode: /caveman toggles, /caveman lite|full|ultra|off sets level",
+		getArgumentCompletions: (prefix) => ["lite", "full", "ultra", "off"]
+			.map((value) => ({ value, label: value }))
+			.filter((item) => item.value.startsWith(prefix)),
+		handler: async (args, ctx) => {
+			const requestedLevel = parseLevel(args);
+			if (args.trim() && !requestedLevel) {
+				ctx.ui.notify(`Unknown caveman mode: ${args}. Use lite, full, ultra, or off.`, "error");
+				return;
+			}
+			setLevel(requestedLevel ?? (currentLevel === "off" ? "lite" : "off"), ctx);
+		},
+	});
+
 	pi.on("session_start", async (_event, ctx) => {
 		currentLevel = "lite";
 		ctx.ui.setStatus("caveman", "lite");
@@ -40,9 +68,7 @@ export default function (pi: ExtensionAPI) {
 		}
 
 		if (!nextLevel) return;
-		currentLevel = nextLevel;
-		ctx.ui.setStatus("caveman", currentLevel === "off" ? undefined : currentLevel);
-		ctx.ui.notify(formatLevel(currentLevel), "info");
+		setLevel(nextLevel, ctx);
 	});
 
 	pi.on("before_agent_start", async () => {
