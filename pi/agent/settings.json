@@ -8,5 +8,10 @@
     "npm:context-mode",
     "git:github.com/v2nic/pi-caveman",
     "npm:pi-web-access"
-  ]
+  ],
+  "compaction": {
+    "enabled": true,
+    "reserveTokens": 32768,
+    "keepRecentTokens": 20000
+  }
 }
