@@ -48,12 +48,12 @@ export default function (pi: ExtensionAPI) {
 		const { preparation, customInstructions, signal } = event;
 		const { messagesToSummarize, turnPrefixMessages, tokensBefore, firstKeptEntryId, previousSummary, fileOps } = preparation;
 
-		const model = ctx.modelRegistry.find("google", "gemini-2.5-flash") ?? ctx.model;
+		const model = ctx.model;
 		if (!model) return;
 
 		const auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
 		if (!auth.ok || !auth.apiKey) {
-			ctx.ui.notify("Codex-style compaction has no model auth; using Pi default compaction", "warning");
+			ctx.ui.notify("Codex-style compaction has no current model auth; using Pi default compaction", "warning");
 			return;
 		}
 
