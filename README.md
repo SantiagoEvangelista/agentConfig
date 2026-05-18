@@ -15,6 +15,12 @@ Sanitized backup of my Pi coding-agent configuration, packages, extensions, and 
 - context-mode databases/cache files
 - nested `.git/` directories
 
+## One-line install
+
+```sh
+curl -fsSL https://raw.githubusercontent.com/SantiagoEvangelista/agentConfig/main/install.sh | bash
+```
+
 ## Restore notes
 
 Review files before restoring. A rough restore is:
