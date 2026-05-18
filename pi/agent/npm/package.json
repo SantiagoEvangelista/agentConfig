@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "context-mode": "^1.0.136",
+    "pi-tool-display": "^0.3.6",
     "pi-web-access": "^0.10.7"
   }
 }
