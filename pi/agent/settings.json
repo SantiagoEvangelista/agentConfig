@@ -4,10 +4,10 @@
   "defaultModel": "gpt-5.5",
   "defaultThinkingLevel": "low",
   "packages": [
-    "https://github.com/coctostan/pi-superpowers",
     "npm:context-mode",
     "git:github.com/v2nic/pi-caveman",
-    "npm:pi-web-access"
+    "npm:pi-web-access",
+    "https://github.com/obra/superpowers"
   ],
   "compaction": {
     "enabled": true,
