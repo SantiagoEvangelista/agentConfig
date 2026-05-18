@@ -6,6 +6,7 @@
   "packages": [
     "https://github.com/coctostan/pi-superpowers",
     "npm:context-mode",
-    "git:github.com/v2nic/pi-caveman"
+    "git:github.com/v2nic/pi-caveman",
+    "npm:pi-web-access"
   ]
 }
